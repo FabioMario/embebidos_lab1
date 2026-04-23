@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "led_strip.h"
 #include "delay.h"
+#include "rgb_led.h"
 
 // Tiempo de parpadeo en milisegundos
 #define BLINK_PERIOD_MS 500
@@ -12,32 +12,31 @@ char exampleArray[ARRAY_SIZE];
 
 void app_main(void)
 {
-    led_strip_t *strip = NULL;
-    if (led_rgb_init(&strip) != ESP_OK || strip == NULL)
-    {
+    void *led = init_led();    
+    if (led == NULL) {
         printf("No se pudo inicializar el LED\n");
         return;
     }
 
+
     while (1)
     {
         printf("Color: ROJO\n");
-        strip->set_pixel(strip, 0, 255, 0, 0);
-        strip->refresh(strip, 100);
+        switch_red(led);
         delay_ms(BLINK_PERIOD_MS);
 
         printf("Color: VERDE\n");
-        strip->set_pixel(strip, 0, 0, 255, 0);
-        strip->refresh(strip, 100);
+        switch_green(led);
         delay_ms(BLINK_PERIOD_MS);
 
         printf("Color: AZUL\n");
-        strip->set_pixel(strip, 0, 0, 0, 255);
-        strip->refresh(strip, 100);
+        switch_blue(led);
         delay_ms(BLINK_PERIOD_MS);
 
         printf("Color: APAGADO\n");
-        strip->clear(strip, 100);
+        switch_off(led);
         delay_ms(BLINK_PERIOD_MS);
     }
+
+    free(led);
 }
