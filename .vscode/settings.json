@@ -1,0 +1,18 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.openOcdConfigs": [
+    "board/esp32s2-kaluga-1.cfg"
+  ],
+  "idf.port": "/dev/tty.usbserial-11201",
+  "idf.currentSetup": "/Users/fabio/.espressif/v6.0/esp-idf",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32s2"
+  },
+  "clangd.path": "/Users/fabio/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin/clangd",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=/Users/fabio/Laboratorio_1/build"
+  ],
+  "idf.flashType": "UART"
+}
